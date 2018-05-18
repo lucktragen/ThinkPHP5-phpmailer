@@ -1,0 +1,45 @@
+将uploadify文件夹放在public/static/admin下
+
+将image.js放在在public/static/admin/js下
+
+将image.php放在api/controller 下
+
+view 页面引入uploadify文件夹下的uploading.css和query.uploadify.min.js和image.js文件
+
+​	`{load href="__STATIC__/admin/uploadify/uploadify.css" /}`
+
+​	`{load href="__STATIC__/admin/uploadify/jquery.uploadify.min.js" /}`
+
+​     `  {load href="__STATIC__/admin/js/image.js" /}`
+
+view页面下 html 情况
+
+	<div class="row cl">           
+		 <label class="form-label col-xs-4 col-sm-2">缩略图：</label>           
+		 <div class="formControls col-xs-8 col-sm-9">              
+			<input id="file_upload"  type="file" multiple="true" >             
+		    <img style="display: none" id="upload_org_code_img" src="" width="150" height="150">  
+	       	<input id="file_upload_image" name="logo" type="hidden" multiple="true" value="">    
+	     </div>   
+	</div>
+在引入使用页面添加一些路径常量配置:
+
+```
+<script>
+   var SCOPE ={
+        'uploadify_swf' : '__STATIC__/admin/uploadify/uploadify.swf',
+        'image_upload' : '{:url('api/image/upload')}',
+   };
+</script>
+```
+其中image.php文件中show()方法是在api/common.php中实现
+
+```
+function show($status,$message='',$data=[]){
+    return [
+        'status' => intval($status),
+        'message' => $message,
+        'data' => $data,
+    ];
+}
+```
