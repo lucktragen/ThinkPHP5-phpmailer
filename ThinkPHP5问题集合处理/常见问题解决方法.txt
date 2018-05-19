@@ -1,0 +1,7 @@
+时间转换错误解决方法:
+    model层中添加
+        public function getCreateTimeAttr( $time )
+        {
+            return $time;
+        }
+

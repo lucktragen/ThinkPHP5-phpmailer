@@ -61,6 +61,11 @@
                     // 1 file_get_contents($url)
                     // 2 curl
                     $result = doCurl($url);
+                    if ($result) {
+                        return json_encode($result,true);
+                    } else {
+                        return [];
+                    }
                     return $result;
                 }
 
